@@ -6,3 +6,4 @@
  #using g++ compiler
  
  g++ -g -pedantic-errors -Wall -Weffc++ -Wextra -Wsign-conversion -std=c++17 -o $1 $2
+$1

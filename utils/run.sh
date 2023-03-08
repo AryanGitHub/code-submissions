@@ -1,44 +1,4 @@
 #!/bin/bash
-
-cointains (){
-    if [[ $2 =~ $1 ]]; then
-        return 0
-    else
-        return 1
-    fi
-}
-isFileExists (){
-    if test -f "$1"; then
-        return 0
-    else 
-        return 1
-    fi
-}
-
-isFolderExists (){
-    if test -d "$1"; then
-        return 0
-    else 
-        return 1
-    fi
-}
-
-getFilename (){
-#using as told here https://stackoverflow.com/questions/965053/extract-filename-and-extension-in-bash
-    local filename=$(basename -- "$1")
-    local filename="${filename%.*}"
-
-    echo $filename
-}
-
-getExtension (){
-#using as told here https://stackoverflow.com/questions/965053/extract-filename-and-extension-in-bash
-    local filename=$(basename -- "$1")
-    local extension="${filename##*.}"
-    local filename="${filename%.*}"
-
-    echo $extension
-}
 setUpBinFolder(){
     
     isFolderExists $bin_path
@@ -80,18 +40,14 @@ getBinaryFilePath(){
 }
 #main function-----------------------
 
-#variable initilisaions
-code_submissions_path="$(pwd)"
-utils_path="$code_submissions_path/utils"
-bin_path="$code_submissions_path/bin"
-leetcode_bin_path="$bin_path/leetcode"
-cf_bin_path="$bin_path/cf"
-others_bin_path="$bin_path/others"
+
+current_bash_file_s_folder_path=$(dirname  "$0")
+source "$current_bash_file_s_folder_path/globalVariables.sh" #importing globalVariables
+source "$utils_path/lib.sh" #importing basic functions
 
 source_code_path=$1
 
 binary_file_path=$(getBinaryFilePath $source_code_path)
-echo $binary_file_path
 
 isFileExists $source_code_path
 
