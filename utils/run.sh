@@ -37,6 +37,18 @@ getBinaryFilePath(){
         echo "$source_code_bin_file_folder/a.out" #this has to be versioned 
     fi
 
+    cointains "others" $1
+    if [ $? == 0 ];then
+        source_code_bin_file_folder="$others_bin_path/$(getFilename $1)"
+
+        isFolderExists $source_code_bin_file_folder
+        if [ $? == 1 ];then
+            mkdir $source_code_bin_file_folder
+        fi
+
+        echo "$source_code_bin_file_folder/a.out" #this has to be versioned 
+    fi
+
 }
 #main function-----------------------
 
