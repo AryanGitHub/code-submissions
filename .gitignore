@@ -1,0 +1,6 @@
+/bin
+*.class
+*.out
+*.jar
+*.exe
+*.o
