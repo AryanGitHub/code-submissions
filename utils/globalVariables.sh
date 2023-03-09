@@ -12,3 +12,11 @@ bin_path="$code_submissions_path/bin"
 leetcode_bin_path="$bin_path/leetcode"
 cf_bin_path="$bin_path/cf"
 others_bin_path="$bin_path/others"
+
+#------------------------------
+#The Below variables are free for users to modify
+
+EDITOR="nvim"
+
+
+

@@ -47,7 +47,7 @@ if [ $# -eq 2 ]; then
 
         message=$(copyLayout $layoutFile $srcFilePath)
         if [ $? == 0 ];then
-            nvim $srcFilePath
+            $EDITOR $srcFilePath
         elif [ $? == 1 ];then
             echo $message
         fi
