@@ -3,12 +3,8 @@
 current_bash_file_s_folder_path=$(dirname  "$0")
 source "$current_bash_file_s_folder_path/globalVariables.sh" #importing globalVariables
 source "$utils_path/lib.sh" #importing basic functions
-setUpSavedDataFolder(){
-    isFolderExists $savedData_path
-    if [ $? == 1 ];then
-        mkdir $savedData_path
-    fi
-}
+source "$utils_path/lastUsedVariables.sh" # importing the LAST_USED_VARIABLES
+
 copyLayout(){
     # $1 is path of layout 
     # $2 is path of the destination source file
@@ -38,16 +34,6 @@ copyLayout(){
 
 }
 
-setSavedValueOfLAST_USED_SOURCECODE_FILE_PATH () {
-# 1) if $savedData folder_path do not exist then create it and
-# 2) save the last source code file path at $variable_LAST_USED_SOURCECODE_FILE_PATH_path
-# saved means its saved on non volatile memory
-# $1 is path of source code file
-    setUpSavedDataFolder
-    LAST_USED_SOURCECODE_FILE_PATH=$1
-    echo $LAST_USED_SOURCECODE_FILE_PATH > $variable_LAST_USED_SOURCECODE_FILE_PATH_path
-
-}
 
 #main function ------------------
 

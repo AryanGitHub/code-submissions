@@ -22,38 +22,6 @@ setUpBinFolder(){
     fi
 }
 
-getSavedValueOfLAST_USED_SOURCECODE_FILE_PATH () {
-# return 1 at error, along with a message
-# returns  0 at success, and loads the variable
-#	the variable should be exported from parent process.
-#	so that the script can modify it.
-	isFileExists $variable_LAST_USED_SOURCECODE_FILE_PATH_path
-	if [ $? == 1 ];then
-		echo "$variable_LAST_USED_SOURCECODE_FILE_PATH_path File Do Not Exist"
-		return 1
-    else
-        LAST_USED_SOURCECODE_FILE_PATH=$(cat $variable_LAST_USED_SOURCECODE_FILE_PATH_path)
-		return 0
-	fi
-
-}
-getSavedValueOfLAST_USED_BINARY_FILE_PATH () {
-# return 1 at error, along with a message
-# returns  0 at success, and loads the variable
-#	the variable should be exported from parent process.
-#	so that the script can modify it.
-
-	isFileExists $variable_LAST_USED_BINARY_FILE_PATH_path
-	if [ $? == 1 ];then
-		echo "$variable_LAST_USED_BINARY_FILE_PATH_path File Do Not Exist"
-		return 1
-	elif [ $? == 0 ];then
-		$LAST_USED_BINARY_FILE_PATH=<(cat $variable_LAST_USED_BINARY_FILE_PATH_path)
-		return 0
-	fi
-
-}
-
 getBinaryFilePath(){
     setUpBinFolder
     
@@ -88,6 +56,7 @@ getBinaryFilePath(){
 current_bash_file_s_folder_path=$(dirname  "$0")
 source "$current_bash_file_s_folder_path/globalVariables.sh" #importing globalVariables
 source "$utils_path/lib.sh" #importing basic functions
+source "$utils_path/lastUsedVariables.sh" # importing the LAST_USED_VARIABLES
 
 if [ $# == 0 ];then
     message=<. getSavedValueOfLAST_USED_SOURCECODE_FILE_PATH
@@ -113,6 +82,7 @@ if [ $? == 0 ]; then
 
     if [ $extension == 'cpp' ];then
         $utils_path/run_cpp.sh "$binary_file_path" "$source_code_path"
+        setSavedValueOfLAST_USED_BINARY_FILE_PATH "$binary_file_path"
     elif [ $extension == 'java' ];then
         ./run_java $source_code_path
     else
