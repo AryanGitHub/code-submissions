@@ -45,7 +45,7 @@ if [ $# -eq 2 ]; then
             srcFilePath="$leetcode_src_path/$2.cpp"
             #TODO add elif of cf and others
         else 
-            layoutFile="$layout_path/basicCppLayout.cpp"
+            layoutFile="$layouts_path/basicCppLayout.cpp"
             srcFilePath="$others_src_path/$2.cpp"
         fi
 
