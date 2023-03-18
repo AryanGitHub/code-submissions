@@ -10,7 +10,9 @@ There are 3 main commands as of now
 #### **For getCppFile.sh**
 
 **SYNOPSIS**
+
     getCppFile.sh leetcode <Question ID>
+    
     getCppFile.sh <any other category> <name of the file>
     
 ----
@@ -18,21 +20,30 @@ There are 3 main commands as of now
     
 #### **For run.sh**
 **SYNOPSIS**
+
     run.sh (runs the last edited file!)
+    
     run.sh <path of the source code file>
+    
 **DESCRIPTION**
+
 it saves the binary file in the bin folder, under the type of file (cf | leetcode | others)
+
 eg. bin/leetcode/443/a.out
 
 ----
 
 #### **For debug.sh**
 **SYNOPSIS**
+
     debug.sh (debug the last compiled or debugged binary file!)
+    
     debug.sh <path of the source code file>
 **DESCRIPTION**
+
 it opens gdb with tui mode and breakpoint "main function" of the file path passed or it will take it from LAST_USED_BINARY_FILE_PATH.
 also sets LAST_USED_BINARY_FILE_PATH to the current debug file.
+
 eg. bin/leetcode/443/a.out
 
 ----
