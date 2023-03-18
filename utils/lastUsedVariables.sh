@@ -74,8 +74,8 @@ getSavedValueOfLAST_USED_BINARY_FILE_PATH () {
 	if [ $? == 1 ];then
 		echo "$variable_LAST_USED_BINARY_FILE_PATH_path File Do Not Exist"
 		return 1
-	elif [ $? == 0 ];then
-		$LAST_USED_BINARY_FILE_PATH=$(cat $variable_LAST_USED_BINARY_FILE_PATH_path)
+    else 
+		LAST_USED_BINARY_FILE_PATH=$(cat $variable_LAST_USED_BINARY_FILE_PATH_path)
 		return 0
 	fi
 
